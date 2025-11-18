@@ -24,10 +24,22 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(express.json());
+app.use(express.static('src/public'));
 
+// Health check endpoint
+app.get('/health', (req, res) => {
+  res.json({ status: 'ok', message: 'Server is running' });
+});
+
+// API routes
 app.use('/auth', authRoutes);
 app.use('/tasks', tasksRoutes);
 app.use('/users', usersRoutes);
+
+// 404 handler for unknown routes
+app.use((req, res) => {
+  res.status(404).json({ message: 'Route not found' });
+});
 
 app.use(errorHandler);
 
