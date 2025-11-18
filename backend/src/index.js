@@ -10,7 +10,19 @@ const errorHandler = require('./middleware/errorHandler');
 dotenv.config();
 
 const app = express();
-app.use(cors());
+
+// CORS configuration
+const corsOptions = {
+  origin: [
+    'http://localhost:5173',
+    'http://localhost:3000',
+    'https://edutech-sx2s.onrender.com',
+    'https://edutech-frontend.onrender.com'
+  ],
+  credentials: true
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 app.use('/auth', authRoutes);
