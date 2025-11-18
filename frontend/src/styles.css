@@ -1,0 +1,248 @@
+:root{
+  --bg:#fafafa;
+  --card:#ffffff;
+  --muted:#666;
+  --accent:#1f6feb;
+}
+*{box-sizing:border-box}
+html,body,#root{height:100%;}
+body{
+  margin:0;
+  font-family: Inter, system-ui, Arial, sans-serif;
+  background:var(--bg);
+  color:#111;
+  font-size:18px;
+}
+.container{max-width:900px;margin:28px auto;padding:24px;background:var(--card);box-shadow:0 6px 18px rgba(0,0,0,0.06);border-radius:8px}
+h1{font-size:32px;margin:0 0 12px}
+h3{font-size:22px;margin:12px 0}
+form{display:flex;flex-direction:column;gap:10px}
+.field-row{display:flex;gap:12px;align-items:center}
+.nav{display:flex;gap:12px;margin-bottom:18px}
+.nav a{color:var(--accent);text-decoration:none;font-weight:600}
+.nav a.active{font-weight:700;text-decoration:underline}
+
+/* inputs, selects, buttons */
+input,select,button,textarea{
+  font-size:18px;
+  padding:10px 12px;
+  border:1px solid #e0e6ef;
+  border-radius:8px;
+  background: #fff;
+  transition: box-shadow .15s, transform .05s;
+}
+
+input:focus, select:focus, textarea:focus{
+  outline: none;
+  box-shadow: 0 6px 18px rgba(31,111,235,0.12);
+  border-color: var(--accent);
+}
+
+button{
+  background:var(--accent);
+  color:white;
+  border:none;
+  padding:12px 16px;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:600;
+}
+button.secondary{background:#e6eefc;color:var(--accent);box-shadow:none}
+button:active{transform:translateY(1px)}
+
+/* form layout */
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.form-grid .full{grid-column:1/-1}
+
+.muted{color:var(--muted)}
+
+/* tasks */
+.task{padding:14px;border-radius:10px;border:1px solid #edf1f7;margin-bottom:12px;background:linear-gradient(180deg,#fff,#fbfdff)}
+.task h4{margin:0 0 6px;font-size:18px}
+.task .meta{color:var(--muted);font-size:14px;margin-bottom:8px}
+.task .actions{display:flex;gap:8px;align-items:center}
+
+/* dashboard layout */
+.dashboard{display:grid;grid-template-columns:1fr 360px;gap:18px}
+.panel{background:linear-gradient(180deg,#fff,#fcfdff);padding:14px;border-radius:10px;border:1px solid #eef3fb}
+
+@media (max-width:880px){
+  .dashboard{grid-template-columns:1fr}
+  .form-grid{grid-template-columns:1fr}
+}
+
+/* tiny helpers */
+.center{text-align:center}
+.spaced{margin-top:12px}
+.small{font-size:14px}
+
+/* Page-specific niceties (non-invasive selectors) */
+.container h3{font-size:24px;margin-bottom:10px}
+.container h4{font-size:20px;margin-bottom:8px}
+
+/* Make form controls full-width and easy to tap */
+.container form{max-width:720px}
+.container form input,.container form select,.container form textarea{width:100%;display:block}
+.container form .row, .container form .field-row{gap:10px}
+
+/* Make primary buttons stretch inside forms */
+.container form button{width:100%;padding:12px}
+
+/* Login/Signup specific layout: stack nicely on mobile, central on desktop */
+@media(min-width:720px){
+  /* center forms inside container */
+  .container > div:first-child{max-width:720px;margin:0 auto}
+}
+
+/* Task creation area: slightly elevated card */
+.container h4 + form{background:#fff;margin-bottom:10px;padding:12px;border-radius:8px;border:1px solid #f0f4fa}
+
+/* Task list items: style li inside container (applies to TaskList) */
+.container ul{list-style:none;padding:0;margin:0}
+.container ul > li{padding:12px;border-radius:8px;border:1px solid #eef3fb;background:#fff;margin-bottom:10px}
+.container ul > li strong{font-size:18px}
+.container ul > li div{margin-top:6px}
+
+/* Small helper to keep forms readable */
+.muted{margin-top:8px}
+
+/* Dashboard-specific refinements (non-invasive) */
+.container > h3{font-size:28px;margin-top:6px;margin-bottom:18px}
+.container > div[style], .container > div {margin-bottom:18px}
+
+/* Create Task form card spacing already handled; ensure inputs have consistent height */
+.container form input, .container form select, .container form textarea{height:44px}
+
+/* Task list controls: compact and aligned */
+.container ul > li .actions{margin-top:10px}
+.container ul > li .actions select{min-width:160px}
+.container ul > li .actions button{margin-left:6px}
+
+/* Better spacing for due date line */
+.container ul > li .meta{display:block;margin-top:8px}
+
+/* Center the create button visually inside the form */
+.container form button{margin-top:8px}
+
+/* Slightly reduce sidebar panel width for narrow screens */
+@media (max-width:1000px){
+  .container{padding:18px}
+}
+
+/* Make Dashboard elements visible even when wrapped in an extra div
+   (some pages render <div><h3>... so target that structure directly) */
+.container > div > h3{font-size:26px;margin:8px 0 14px}
+.container > div > h4{font-size:20px;margin:12px 0}
+
+/* Forms and lists inside the dashboard wrapper */
+.container > div form{background:#fff;padding:12px;border-radius:8px;border:1px solid #f3f7fc;max-width:720px;margin-bottom:12px}
+.container > div form > div{margin-bottom:8px}
+.container > div form input,.container > div form select,.container > div form textarea{width:100%;height:44px}
+
+.container > div ul{list-style:none;padding:0;margin:8px 0}
+.container > div ul > li{padding:14px;border-radius:10px;border:1px solid #eef3fb;background:linear-gradient(180deg,#fff,#fbfdff);margin-bottom:10px}
+.container > div ul > li strong{font-size:18px}
+.container > div ul > li div{margin-top:6px}
+.container > div ul > li > div:last-child{display:flex;gap:8px;align-items:center;margin-top:10px}
+
+/* Make error message clearer */
+.container > div > div[style], .container > div > .error{color:#b00020;font-weight:600;margin-bottom:12px}
+
+/* Ensure buttons inside dashboard are not full-width (except forms) */
+.container > div button{min-width:100px}
+
+@media (max-width:720px){
+  .container{margin:12px}
+  .container > div form{padding:10px}
+}
+
+/* Completed dashboard CSS */
+
+/* --- Modern dashboard theme enhancements --- */
+:root{
+  --card-shadow: 0 10px 30px rgba(15,23,42,0.06);
+  --soft-shadow: 0 6px 20px rgba(15,23,42,0.04);
+  --glass: rgba(255,255,255,0.6);
+  --accent-2: linear-gradient(90deg,#2663f6,#6a4ef8);
+}
+
+/* Make the outer container stand out like a centered shell */
+.container{
+  max-width:980px;
+  padding:28px 32px;
+  background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(250,250,255,0.95));
+  border-radius:12px;
+  box-shadow:var(--card-shadow);
+}
+
+/* Top bar (signed-in area) styling */
+.container > div[style], .container > div[style] *{
+  color: #111;
+}
+.container > div[style]{
+  padding:12px 16px;
+  background: linear-gradient(180deg,#fff,#fbfdff);
+  border-radius:10px;
+  border:1px solid #eef3fb;
+  box-shadow: var(--soft-shadow);
+}
+.container > div[style] strong{font-weight:700;margin-right:6px}
+.container > div[style] button{background:var(--accent-2);border-radius:8px;padding:8px 14px}
+
+hr{border:0;border-top:1px solid #e9eef8;margin:18px 0}
+
+/* Heading */
+.container h3{font-size:28px;color:#0f1724;margin:18px 0}
+
+/* Create Task card: larger inputs, subtle inner card */
+.container h4{color:#0f1724;margin-bottom:10px}
+.container h4 + form{
+  background: linear-gradient(180deg,#ffffff,#fbfdff);
+  border-radius:10px;
+  padding:18px;
+  border:1px solid #eef3fb;
+  box-shadow: 0 6px 18px rgba(21,42,80,0.03);
+}
+.container h4 + form input,
+.container h4 + form select,
+.container h4 + form textarea{
+  border-radius:10px;padding:12px 14px;background:#ffffff;border:1px solid #ebf0fb;font-size:16px
+}
+.container h4 + form button{
+  margin-top:12px;background:var(--accent-2);box-shadow:0 8px 20px rgba(38,99,246,0.18);border-radius:10px;padding:12px 18px;font-size:16px
+}
+
+/* Tasks list card */
+.container > div ul{margin-top:10px}
+.container > div ul > li{
+  border-radius:12px;padding:16px;border:1px solid #eef3fb;background:linear-gradient(180deg,#fff,#fbfdff);
+  box-shadow: 0 6px 18px rgba(20,28,56,0.03);
+}
+.container > div ul > li strong{display:block;font-size:18px;color:#0b1220}
+.container > div ul > li div{color:#223}
+.container > div ul > li .meta{color:#6b7280;font-size:13px}
+
+/* action group styling */
+.container > div ul > li > div:last-child select{padding:10px;border-radius:8px;border:1px solid #e6eefb;background:#fff}
+.container > div ul > li > div:last-child button{background:#2b6df6;color:#fff;border-radius:8px;padding:8px 12px;border:none}
+
+/* small responsive tweaks */
+@media (min-width:900px){
+  .container{padding:32px 36px}
+}
+
+/* subtle placeholder color */
+input::placeholder, textarea::placeholder{color:#98a0b3}
+
+/* make select look nicer */
+select{appearance:none;background-image:none}
+
+/* make Delete button distinct */
+.container > div ul > li > div:last-child button[onclick], .container > div ul > li > div:last-child button{background:#2563eb}
+
+/* end of theme enhancements */
+
+
+
+
+
