@@ -1,0 +1,11 @@
+services:
+  - type: static
+    name: edutech-frontend
+    env: static
+    region: oregon
+    plan: free
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: VITE_API_URL
+        value: https://edutech-backend.onrender.com

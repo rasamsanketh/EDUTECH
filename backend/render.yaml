@@ -4,7 +4,6 @@ services:
     env: node
     region: oregon
     plan: free
-    dir: backend
     buildCommand: npm install
     startCommand: npm start
     envVars:
@@ -16,15 +15,3 @@ services:
         value: your_jwt_secret_key_here
       - key: PORT
         value: 4000
-
-  - type: static
-    name: edutech-frontend
-    env: static
-    region: oregon
-    plan: free
-    dir: frontend
-    buildCommand: npm install && npm run build
-    staticPublishPath: dist
-    envVars:
-      - key: VITE_API_URL
-        value: https://edutech-backend.onrender.com
